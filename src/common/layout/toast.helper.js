@@ -1,5 +1,10 @@
 import Toast from 'react-native-toast-message';
 
+/**
+ *
+ * @param {{message: string, type: "success"| "error" | "info", title: string}} param0
+ */
+
 export const showToast = ({message, type, title}) => {
   Toast.show({
     type: type, // success | error | info

@@ -2,16 +2,17 @@ import {Theme} from '@src/common/theme';
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {Router} from '../router';
+import LottieView from 'lottie-react-native';
 
 const TabBarIcon = ({name, focused, ...props}) => {
   return (
     <View style={styles.root}>
-      {name === Router.Shop && (
+      {name === Router.Number && (
         <Image
           source={
             focused
-              ? require('@src/assets/images/icons/shop-active.png')
-              : require('@src/assets/images/icons/shop.png')
+              ? require('@src/assets/images/icons/number-active.png')
+              : require('@src/assets/images/icons/number.png')
           }
           style={{width: 30, height: 25, resizeMode: 'contain'}}
         />
@@ -37,14 +38,25 @@ const TabBarIcon = ({name, focused, ...props}) => {
         />
       )}
       {name === Router.Cart && (
-        <Image
-          source={
-            focused
-              ? require('@src/assets/images/icons/cart-active.png')
-              : require('@src/assets/images/icons/cart.png')
-          }
-          style={{width: 30, height: 25, resizeMode: 'contain'}}
-        />
+        <View
+          style={{
+            backgroundColor: Theme.backgrounds.grayPaper,
+            borderRadius: 15,
+            height: 50,
+            width: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <LottieView
+            source={require('@src/assets/images/qr-code.json')}
+            style={{
+              height: 35,
+            }}
+            speed={0.4}
+            autoPlay
+            loop
+          />
+        </View>
       )}
       {name === Router.Profile && (
         <Image
@@ -73,7 +85,7 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: Theme.fontFamily.RobotoBold,
     fontSize: Theme.size.small,
-    color: Theme.colors.secondary,
+    color: Theme.colors.primary,
   },
   linearGradient: {
     flex: 1,

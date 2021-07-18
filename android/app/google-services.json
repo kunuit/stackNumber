@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "391895989090",
+    "firebase_url": "https://stack-number-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "stack-number",
+    "storage_bucket": "stack-number.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391895989090:android:c50f54d669ca2997448a3b",
+        "android_client_info": {
+          "package_name": "com.stacknumber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391895989090-7se96360oeuao3rct3hp8lig3n8ncf7m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stacknumber",
+            "certificate_hash": "2fde58d9ea64385be89efee2b086e3c5f120588f"
+          }
+        },
+        {
+          "client_id": "391895989090-b4cgb4gmrpl2kave3i8l1c3fa7lbmknj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASD3uutFlsOwrkTNHaRkssv8qF4JCkTEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391895989090-b4cgb4gmrpl2kave3i8l1c3fa7lbmknj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

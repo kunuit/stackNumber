@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import IconIon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {Router} from '@src/navigation/router';
 
@@ -30,7 +31,7 @@ const Header = ({
           onPress={() => {
             navigation.goBack();
           }}>
-          {isBack ? (
+          {isBack && (
             <View
               style={[
                 styles.icon,
@@ -49,25 +50,6 @@ const Header = ({
                 }
               />
             </View>
-          ) : (
-            <View
-              style={[
-                styles.icon,
-                {marginLeft: 12},
-                isBorder
-                  ? {
-                      backgroundColor: Theme.backgrounds.buttonBack,
-                    }
-                  : {},
-              ]}>
-              <Icon
-                name="clockcircleo"
-                size={20}
-                color={
-                  isBorder ? Theme.backgrounds.white : Theme.colors.secondary
-                }
-              />
-            </View>
           )}
         </TouchableOpacity>
       </View>
@@ -80,7 +62,8 @@ const Header = ({
       </Text>
       <View style={styles.right}>
         {isRight && (
-          <TouchableOpacity onPress={() => navigation.navigate(Router.Message)}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Router.Notification)}>
             <View
               style={[
                 styles.icon,
@@ -91,9 +74,9 @@ const Header = ({
                     }
                   : {},
               ]}>
-              <Icon
-                name="message1"
-                size={20}
+              <IconIon
+                name="md-notifications-outline"
+                size={22}
                 color={
                   isBorder ? Theme.backgrounds.white : Theme.colors.secondary
                 }

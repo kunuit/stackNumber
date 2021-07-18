@@ -3,16 +3,19 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {showToast} from '../../../../common/layout/toast.helper';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Theme} from '@src/common/theme';
+import {useNavigation} from '@react-navigation/native';
+import {Router} from '@src/navigation/router';
 
 const InfoCard = ({nameIcon, name, ...props}) => {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={{elevation: 0}}
       onPress={() => {
-        // if (name == 'Orders') {
-        //   navigation.navigate('Order Detail By Status');
-        // } else showToast({title: name, type: 'info', message: name});
-        showToast({title: name, type: 'info', message: name});
+        if (name == 'Quản lý danh sách') {
+          navigation.navigate(Router.ListMyRoom);
+        } else showToast({title: name, type: 'info', message: name});
+        // showToast({title: name, type: 'info', message: name});
       }}>
       <View style={styles.root}>
         <Icon name={nameIcon} size={30} color={Theme.colors.notBlack} />

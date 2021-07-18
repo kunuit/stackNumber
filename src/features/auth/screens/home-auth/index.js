@@ -15,7 +15,7 @@ const HomeAuth = () => {
   const navigation = useNavigation();
 
   return (
-    <Background>
+    <Background isButtonBack={false}>
       <Logo />
 
       <Text

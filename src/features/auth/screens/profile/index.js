@@ -4,15 +4,15 @@ import {StyleSheet, Text, View, FlatList, Platform} from 'react-native';
 import ButtonLogOut from '../../components/profile.component/ButtonLogOut';
 import InfoCard from '../../components/profile.component/info-card';
 import InfoProfile from '../../components/profile.component/info-profile';
+import {useDispatch} from 'react-redux';
+import {typeAuths} from '../../redux/auth.type';
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const arrInfoCard = [
-    {nameIcon: 'basket-outline', name: 'Orders'},
-    {nameIcon: 'newspaper-outline', name: 'My Details'},
-    {nameIcon: 'ios-location-outline', name: 'Delivery Address'},
-    {nameIcon: 'ios-card-outline', name: 'Payment Methods'},
-    {nameIcon: 'ios-barcode-outline', name: 'Promo Card'},
-    {nameIcon: 'notifications-outline', name: 'Notifications'},
+    {nameIcon: 'basket-outline', name: 'Quản lý danh sách'},
+    {nameIcon: 'newspaper-outline', name: 'Thông tin cá nhân'},
+    {nameIcon: 'ios-card-outline', name: 'Phương thức thanh toán'},
     {nameIcon: 'ios-help-circle-outline', name: 'Help'},
     {nameIcon: 'ios-alert-circle-outline', name: 'About'},
   ];
@@ -26,7 +26,9 @@ const Profile = () => {
         }}
         keyExtractor={(item, index) => index.toString()}
         ListHeaderComponent={InfoProfile}
-        ListFooterComponent={ButtonLogOut}
+        ListFooterComponent={
+          <ButtonLogOut onPress={() => dispatch({type: typeAuths.logout})} />
+        }
       />
     </View>
   );

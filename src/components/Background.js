@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import Header from './header';
 
-const Background = ({children, isButtonBack = false, relative = false}) => (
+const Background = ({children, isButtonBack = true, relative = false}) => (
   <View style={styles.background}>
     <Header
-      isBack={true}
+      isBack={isButtonBack}
       isBorder={true}
       isRight={false}
       styleRoot={{backgroundColor: Theme.backgrounds.transparent}}

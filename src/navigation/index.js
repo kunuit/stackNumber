@@ -14,6 +14,16 @@ import {
   ForgotPassword,
 } from '@features/auth/screens';
 
+import {Notification} from '@features/notification/screens';
+
+import {QrCodeGeneratorScreen} from '@features/room/screens';
+
+import {MyNumberList} from '@features/number/screens';
+
+import {CreateRoomScreen, ListMyRoom} from '@features/room/screens';
+
+import {EnterCode} from '@features/scan-qr-code/screens';
+
 const Stack = createStackNavigator();
 
 const configTabOther = {
@@ -30,12 +40,20 @@ const AppNavigation = () => {
       screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
-      <Stack.Screen name="TabBarBottom" component={TabBarBottom} />
+      <Stack.Screen name={Router.BottomTabBar} component={TabBarBottom} />
 
       {[
         {name: Router.Login, component: Login},
         {name: Router.Register, component: Register},
         {name: Router.ForgotPassword, component: ForgotPassword},
+        {name: Router.EnterCode, component: EnterCode},
+        // number
+        {name: Router.Notification, component: Notification},
+        {name: Router.MyNumberList, component: MyNumberList},
+        // room
+        {name: Router.QrCodeGeneratorScreen, component: QrCodeGeneratorScreen},
+        {name: Router.CreateRoomScreen, component: CreateRoomScreen},
+        {name: Router.ListMyRoom, component: ListMyRoom},
       ].map(stack => {
         return (
           <Stack.Screen
