@@ -50,17 +50,17 @@ const TabBarBottom = () => {
         playSound: true,
       };
 
-      if (notify.type === 'increase number') {
-        console.log('change current number');
-        return;
-      }
-      // localNotificationService.showNotification(
-      //   '1',
-      //   notify.title,
-      //   notify.body,
-      //   notify,
-      //   opts,
-      // );
+      // if (notify.type === 'increase number') {
+      //   console.log('change current number');
+      //   return;
+      // }
+      localNotificationService.showNotification(
+        '1',
+        notify.title,
+        notify.body,
+        notify,
+        opts,
+      );
     }
 
     // // when remote

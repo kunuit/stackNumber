@@ -55,7 +55,8 @@ function* getAllMyRoomSaga({payload}) {
     yield put({
       type: TypeRoom.getAllMyRoomSuccess,
       payload: {
-        data: convertDataSuccess(data),
+        data: convertDataSuccess(data.rooms),
+        pagination: data.pagination,
       },
     });
   } else {

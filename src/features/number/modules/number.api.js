@@ -8,6 +8,6 @@ export const getNumberAPI = ({url}) => {
   return axiosService.get(`${url}`);
 };
 
-export const getAllMyNumberAPI = () => {
-  return axiosService.get(`${API_ENDPOINT}/${route}`);
+export const getAllMyNumberAPI = (sort = -1, limit = 10, page = 1) => {
+  return axiosService.get(`${API_ENDPOINT}/${route}?sort=-1`);
 };

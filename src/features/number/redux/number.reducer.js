@@ -3,20 +3,14 @@ import {TypeNumber} from './number.type';
 
 const reducer = (state = initialState, {type, payload}) => {
   switch (type) {
-    case TypeNumber.changeFields:
-      return {
-        ...state,
-        ...payload.changeFields,
-      };
-
     case TypeNumber.getNumberSuccess:
       return {
         ...state,
         myNumbers: {
           ...state.myNumbers,
           list: {
-            ...state.myNumbers.list,
             [payload.data._id]: payload.data,
+            ...state.myNumbers.list,
           },
         },
         showLoading: false,
@@ -27,7 +21,30 @@ const reducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         showLoading: false,
-        myNumbers: {...state.myNumbers, ...payload.data},
+        myNumbers: {
+          ...state.myNumbers,
+          ...payload.data,
+          pagination: payload.pagination,
+        },
+      };
+
+    case TypeNumber.changeFields:
+      return {
+        ...state,
+        ...payload.changeFields,
+      };
+
+    case TypeNumber.resetAll:
+      return {
+        // loading
+        showLoading: false,
+        // handle
+        pickerNumber: null,
+        errorNumber: null,
+        myNumbers: Object.freeze({
+          list: [],
+          pagination: null,
+        }),
       };
 
     default:

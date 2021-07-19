@@ -22,6 +22,7 @@ import {
   phoneValidator,
   addressValidator,
 } from '../../modules/auth.validation';
+import {typeAuths} from '../../redux/auth.type';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const RegisterScreen = () => {
   let ref_input7 = useRef();
   const navigation = useNavigation();
   const [name, setName] = useState({value: '', error: ''});
-  const [fullName, setFullName] = useState({value: '', error: ''});
+  // const [fullName, setFullName] = useState({value: '', error: ''});
   const [email, setEmail] = useState({value: '', error: ''});
   const [password, setPassword] = useState({value: '', error: ''});
   const [confirmPassword, setConfirmPassword] = useState({
@@ -42,7 +43,7 @@ const RegisterScreen = () => {
     error: '',
   });
   const [phone, setPhone] = useState({value: '', error: ''});
-  const [address, setAddress] = useState({value: '', error: ''});
+  // const [address, setAddress] = useState({value: '', error: ''});
 
   const {errorRegister, isRegister, isRegisterLoading} = useSelector(
     state => state.auth,
@@ -50,28 +51,28 @@ const RegisterScreen = () => {
 
   const _onSignUpPressed = () => {
     const nameError = nameValidator(name.value);
-    const fullNameError = nameValidator(fullName.value);
+    // const fullNameError = nameValidator(fullName.value);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
     const confirmPasswordError = passwordValidator(confirmPassword.value);
     const phoneError = phoneValidator(phone.value);
-    const addressError = addressValidator(address.value);
+    // const addressError = addressValidator(address.value);
 
     if (
       emailError ||
       passwordError ||
-      fullNameError ||
+      // fullNameError ||
       nameError ||
-      phoneError ||
-      addressError
+      phoneError
+      // addressError
     ) {
       setName({...name, error: nameError});
-      setFullName({...fullName, error: fullNameError});
+      // setFullName({...fullName, error: fullNameError});
       setEmail({...email, error: emailError});
       setPassword({...password, error: passwordError});
       setConfirmPassword({...confirmPassword, error: confirmPasswordError});
       setPhone({...phone, error: phoneError});
-      setAddress({...address, error: addressError});
+      // setAddress({...address, error: addressError});
       return;
     }
 
@@ -84,10 +85,10 @@ const RegisterScreen = () => {
       type: typeAuths.register,
       payload: {
         username: name.value,
-        fullName: fullName.value,
-        // email: email.value,
+        // fullName: fullName.value,
+        email: email.value,
         password: password.value,
-        // phone: phone.value,
+        phone: phone.value,
         // addressDetail: address.value,
       },
     });
@@ -130,13 +131,13 @@ const RegisterScreen = () => {
         inputRef={ref => (ref_input1.current = ref)}
         autoFocus={false}
         blurOnSubmit={false}
-        onSubmitEditing={() => ref_input2.current.focus()}
+        onSubmitEditing={() => ref_input3.current.focus()}
         value={name.value}
         onChangeText={text => setName({value: text, error: ''})}
         errorText={name.error}
       />
 
-      <TextInputCus
+      {/* <TextInputCus
         label="Full name"
         returnKeyType="next"
         inputRef={ref => (ref_input2.current = ref)}
@@ -146,7 +147,7 @@ const RegisterScreen = () => {
         value={fullName.value}
         onChangeText={text => setFullName({value: text, error: ''})}
         errorText={fullName.error}
-      />
+      /> */}
 
       <TextInputCus
         label="Email"
@@ -195,7 +196,7 @@ const RegisterScreen = () => {
         inputRef={ref => (ref_input6.current = ref)}
         autoFocus={false}
         blurOnSubmit={false}
-        onSubmitEditing={() => ref_input7.current.focus()}
+        onSubmitEditing={_onSignUpPressed}
         value={phone.value}
         onChangeText={text => {
           setPhone({value: text, error: ''});
@@ -204,7 +205,7 @@ const RegisterScreen = () => {
         errorText={phone.error}
       />
 
-      <TextInputCus
+      {/* <TextInputCus
         label="Address"
         returnKeyType="done"
         inputRef={ref => (ref_input7.current = ref)}
@@ -212,7 +213,7 @@ const RegisterScreen = () => {
         value={address.value}
         onChangeText={text => setAddress({value: text, error: ''})}
         errorText={address.error}
-      />
+      /> */}
 
       <Button
         style={{backgroundColor: Theme.colors.primary}}

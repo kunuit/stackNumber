@@ -23,6 +23,7 @@ import {MyNumberList} from '@features/number/screens';
 import {CreateRoomScreen, ListMyRoom} from '@features/room/screens';
 
 import {EnterCode} from '@features/scan-qr-code/screens';
+import {SplashScreen} from '@features/splash/screens';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,8 @@ const AppNavigation = () => {
       screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       }}>
+      <Stack.Screen name={Router.SplashScreen} component={SplashScreen} />
+
       <Stack.Screen name={Router.BottomTabBar} component={TabBarBottom} />
 
       {[

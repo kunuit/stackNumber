@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, FlatList, RefreshControl} from 'react-native';
 import Header from '@components/header';
 import {Theme, HeightScreen} from '@common/theme';
 import {useDispatch, useSelector} from 'react-redux';
@@ -7,11 +7,20 @@ import {useNavigation} from '@react-navigation/native';
 import InfoRoomCard from '../../components/info-room-card';
 import EmptyValue from '@components/empty-value';
 import {Router} from '@src/navigation/router';
+import {TypeRoom} from '../../redux/room.type';
 
 const ListMyRoom = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {showLoading, rooms} = useSelector(state => state.room);
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const _onRefresh = () => {
+    dispatch({
+      type: TypeRoom.getAllMyRoom,
+    });
+  };
 
   const _onPickNumber = item => {
     console.log(`item`, item);
@@ -27,6 +36,9 @@ const ListMyRoom = () => {
         <FlatList
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.list}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={_onRefresh} />
+          }
           data={[...Object.values(!!rooms ? rooms.list : {})]}
           renderItem={({item, index}) => (
             <InfoRoomCard item={item} onCard={() => _onPickNumber(item)} />

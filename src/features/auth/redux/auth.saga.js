@@ -1,4 +1,11 @@
-import {takeEvery, put, call, takeLatest, select} from 'redux-saga/effects';
+import {
+  takeEvery,
+  put,
+  call,
+  takeLatest,
+  select,
+  all,
+} from 'redux-saga/effects';
 
 import {statusCode} from '@src/constants/api.constants';
 import {typeAuths} from './auth.type';
@@ -8,6 +15,7 @@ import {
   loginAPI,
   registerAPI,
   setTokenHeaderService,
+  logoutAPI,
 } from '../modules/auth.api';
 
 function* initAuthSaga({payload}) {
@@ -19,13 +27,6 @@ function* loginSaga(action) {
   yield put({type: typeAuths.showAuthLoading});
   //call api
   const {message, success, data, errors} = yield call(loginAPI, action.payload);
-
-  console.log(`{message, success, data, errors}`, {
-    message,
-    success,
-    data,
-    errors,
-  });
 
   if (!!success) {
     // go to my profile
@@ -55,15 +56,15 @@ function* registerSaga(action) {
   // show loading and block button
   yield put({type: typeAuths.showRegisterLoading});
   //call api
-  const {payload, code, message} = yield call(registerAPI, action.payload);
+  const {success, data, message} = yield call(registerAPI, action.payload);
 
   console.log(`message`, message);
-  if (code == statusCode.success) {
+  if (success) {
     // back to login or home
     yield put({
       type: typeAuths.registerSuccess,
       payload: {
-        data: payload,
+        data,
       },
     });
   } else {
@@ -78,8 +79,19 @@ function* registerSaga(action) {
 }
 
 function* logoutSaga() {
-  console.log('logout in saga');
-  yield call(setTokenHeaderService, null);
+  const {success, data, message} = yield call(logoutAPI);
+
+  if (success) {
+    yield all([
+      call(setTokenHeaderService, null),
+      put({
+        type: TypeRoom.resetAll,
+      }),
+      put({
+        type: TypeNumber.resetAll,
+      }),
+    ]);
+  }
 }
 
 export const authSagas = [

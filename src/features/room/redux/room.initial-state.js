@@ -4,5 +4,8 @@ export const initialState = Object.freeze({
   // handle
   isCreated: false,
   errorCreatedRoom: null,
-  rooms: [],
+  rooms: Object.freeze({
+    list: [],
+    pagination: null,
+  }),
 });

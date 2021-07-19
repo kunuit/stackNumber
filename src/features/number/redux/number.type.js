@@ -13,5 +13,5 @@ export const TypeNumber = Object.freeze({
 
   // utils
   changeFields: 'CHANGE_NUMBER_FIELDS',
-  resetToHome: 'RESET_TO_HOME',
+  resetAll: 'RESET_ALL_NUMBER',
 });

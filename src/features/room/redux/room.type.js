@@ -12,5 +12,5 @@ export const TypeRoom = Object.freeze({
 
   // utils
   changeFields: 'CHANGE_ROOM_FIELDS',
-  resetAllRoom: 'RESET_ALL_ROOM',
+  resetAll: 'RESET_ALL_ROOM',
 });

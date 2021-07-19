@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {TypeNumber} from '../../number/redux/number.type';
 import {API_ENDPOINT} from '@env';
 import {Router} from '@src/navigation/router';
+import {codeValidator} from '../modules/scan-code.validation';
 
 const EnterCode = () => {
   let ref_input1 = useRef();
@@ -17,6 +18,12 @@ const EnterCode = () => {
   const [code, setCode] = useState({value: '', error: ''});
 
   const _submitCode = () => {
+    const isErrorCode = codeValidator(code.value);
+    if (isErrorCode) {
+      setCode({...code, error: isErrorCode});
+      return;
+    }
+
     dispatch({
       type: TypeNumber.getNumber,
       payload: {url: `${API_ENDPOINT}/number/${code.value}`},

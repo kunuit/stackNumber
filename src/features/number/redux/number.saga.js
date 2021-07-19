@@ -25,6 +25,16 @@ function* getNumberSaga({payload}) {
         data,
       },
     });
+  } else {
+    yield put({
+      type: TypeNumber.changeFields,
+      payload: {
+        changeFields: {
+          showLoading: false,
+          errorNumber: message,
+        },
+      },
+    });
   }
 }
 
@@ -45,7 +55,8 @@ function* getAllMyNumberSaga({payload}) {
     yield put({
       type: TypeNumber.getAllMyNumberSuccess,
       payload: {
-        data: convertDataSuccess(data),
+        data: convertDataSuccess(data.numbers),
+        pagination: data.pagination,
       },
     });
   }

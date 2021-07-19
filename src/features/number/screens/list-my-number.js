@@ -1,6 +1,6 @@
 import Header from '@src/components/header';
-import React from 'react';
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, FlatList, RefreshControl} from 'react-native';
 import InfoNumberCard from '../components/info-number-card';
 import {Theme, HeightScreen} from '@common/theme';
 import {useSelector, useDispatch} from 'react-redux';
@@ -12,6 +12,14 @@ const MyNumberList = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {showLoading, myNumbers} = useSelector(state => state.number);
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const _onRefresh = () => {
+    dispatch({
+      type: TypeNumber.getAllMyNumber,
+    });
+  };
 
   const _onPickNumber = item => {
     console.log(`item`, item);
@@ -33,6 +41,9 @@ const MyNumberList = () => {
         <FlatList
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.list}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={_onRefresh} />
+          }
           data={[...Object.values(!!myNumbers ? myNumbers.list : {})]}
           renderItem={({item, index}) => (
             <InfoNumberCard item={item} onCard={() => _onPickNumber(item)} />

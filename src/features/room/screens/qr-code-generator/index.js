@@ -26,7 +26,7 @@ const QrCodeGeneratorScreen = () => {
         isRight={false}
         isBack
         styleRoot={styles.header}
-        title="Mã giới thiệu"
+        title="Mã phòng"
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{flex: 1, paddingBottom: 30}}>

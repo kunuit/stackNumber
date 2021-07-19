@@ -6,5 +6,6 @@ export const initialState = Object.freeze({
   errorNumber: null,
   myNumbers: Object.freeze({
     list: [],
+    pagination: null,
   }),
 });

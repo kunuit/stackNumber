@@ -12,6 +12,10 @@ export const loginAPI = data => {
   return axiosService.post(`${API_ENDPOINT}/${routeAuth}/login`, data);
 };
 
+export const logoutAPI = () => {
+  return axiosService.get(`${API_ENDPOINT}/${routeAuth}/logout`);
+};
+
 export const registerAPI = data => {
   return axiosService.post(`${API_ENDPOINT}/${routeAuth}/register`, data);
 };

@@ -1,4 +1,5 @@
 export const Router = {
+  SplashScreen: 'SplashScreen',
   BottomTabBar: 'BottomTabBar',
 
   // insight bottom tab bar

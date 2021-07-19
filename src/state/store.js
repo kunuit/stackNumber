@@ -8,9 +8,9 @@ import {createStore, applyMiddleware, compose} from 'redux';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'number'],
   // Blacklist (Don't Save Specific Reducers)
-  blacklist: ['home', 'postNew', 'upload', 'number', 'room'],
+  blacklist: ['home', 'postNew', 'upload', 'room'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

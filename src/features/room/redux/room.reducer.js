@@ -3,11 +3,6 @@ import {TypeRoom} from './room.type';
 
 const reducer = (state = initialState, {type, payload}) => {
   switch (type) {
-    case TypeRoom.changeFields:
-      return {
-        ...state,
-        ...payload.changeFields,
-      };
     case TypeRoom.createRoomFail:
       return {
         ...state,
@@ -33,7 +28,31 @@ const reducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         showLoading: false,
-        rooms: {...state.rooms, ...payload.data},
+        rooms: {
+          ...state.rooms,
+          ...payload.data,
+          pagination: payload.pagination,
+        },
+      };
+
+    case TypeRoom.changeFields:
+      return {
+        ...state,
+        ...payload.changeFields,
+      };
+
+    case TypeRoom.resetAll:
+      return {
+        ...state,
+        // loading
+        showLoading: false,
+        // handle
+        isCreated: false,
+        errorCreatedRoom: null,
+        rooms: Object.freeze({
+          list: [],
+          pagination: null,
+        }),
       };
     default:
       return state;

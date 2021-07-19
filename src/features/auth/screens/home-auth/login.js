@@ -24,8 +24,8 @@ const Login = () => {
   const isFocused = useIsFocused();
   let ref_input2 = useRef();
   let ref_input1 = useRef();
-  const [email, setEmail] = useState({value: 'kunion9', error: ''});
-  const [password, setPassword] = useState({value: '123456cC', error: ''});
+  const [email, setEmail] = useState({value: '', error: ''});
+  const [password, setPassword] = useState({value: '', error: ''});
 
   const {
     errorLogin,
