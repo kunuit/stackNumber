@@ -72,9 +72,9 @@ const TabBarBottom = () => {
         notify.google,
         notify['google.message_id'],
       );
-      if (!!notify.item || !!notify['google.message_id']) {
-        navigation.navigate(Router.Notification, notify.topic);
-      }
+      // if (!!notify.item || !!notify['google.message_id']) {
+      //   navigation.navigate(Router.Notification, notify.topic);
+      // }
     }
 
     // when local

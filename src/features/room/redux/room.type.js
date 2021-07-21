@@ -10,6 +10,9 @@ export const TypeRoom = Object.freeze({
   createRoomFail: 'CREATE_ROOM_FAIL',
   createRoomSuccess: 'CREATE_ROOM_SUCCESS',
 
+  increaseNumber: 'INCREASE_NUMBER',
+  increaseNumberSuccess: 'INCREASE_NUMBER_SUCCESS',
+
   // utils
   changeFields: 'CHANGE_ROOM_FIELDS',
   resetAll: 'RESET_ALL_ROOM',

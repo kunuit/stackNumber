@@ -34,6 +34,12 @@ const ShowLoading = ({
       {type === TypeLoading.dot && (
         <LottieView source={Source.Dot} style={{height}} autoPlay loop />
       )}
+      {type === TypeLoading.plus && (
+        <LottieView source={Source.Plus} style={{height}} autoPlay loop />
+      )}
+      {type === TypeLoading.spread && (
+        <LottieView source={Source.Spread} style={{height}} autoPlay loop />
+      )}
     </View>
   );
 };

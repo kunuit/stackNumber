@@ -20,7 +20,11 @@ import {QrCodeGeneratorScreen} from '@features/room/screens';
 
 import {MyNumberList} from '@features/number/screens';
 
-import {CreateRoomScreen, ListMyRoom} from '@features/room/screens';
+import {
+  CreateRoomScreen,
+  ListMyRoom,
+  DashboardRoomScreen,
+} from '@features/room/screens';
 
 import {EnterCode} from '@features/scan-qr-code/screens';
 import {SplashScreen} from '@features/splash/screens';
@@ -57,6 +61,7 @@ const AppNavigation = () => {
         {name: Router.QrCodeGeneratorScreen, component: QrCodeGeneratorScreen},
         {name: Router.CreateRoomScreen, component: CreateRoomScreen},
         {name: Router.ListMyRoom, component: ListMyRoom},
+        {name: Router.DashboardRoomScreen, component: DashboardRoomScreen},
       ].map(stack => {
         return (
           <Stack.Screen

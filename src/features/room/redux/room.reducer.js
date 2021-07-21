@@ -30,8 +30,25 @@ const reducer = (state = initialState, {type, payload}) => {
         showLoading: false,
         rooms: {
           ...state.rooms,
-          ...payload.data,
+          list: {
+            ...(payload.keepMyRooms ? state.rooms.list : {}),
+
+            ...payload.data,
+          },
           pagination: payload.pagination,
+        },
+        actionLoading: null,
+      };
+
+    case TypeRoom.increaseNumberSuccess:
+      return {
+        ...state,
+        rooms: {
+          ...state.rooms,
+          list: {
+            ...state.rooms.list,
+            [payload.data._id]: payload.data,
+          },
         },
       };
 
@@ -43,15 +60,20 @@ const reducer = (state = initialState, {type, payload}) => {
 
     case TypeRoom.resetAll:
       return {
-        ...state,
         // loading
         showLoading: false,
+        actionLoading: null,
         // handle
         isCreated: false,
         errorCreatedRoom: null,
+        errorIncreaseNumber: null,
         rooms: Object.freeze({
           list: [],
-          pagination: null,
+          pagination: {
+            current: 0,
+            limit: 0,
+            total: 0,
+          },
         }),
       };
     default:

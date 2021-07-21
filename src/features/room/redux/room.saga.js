@@ -1,7 +1,12 @@
-import {takeEvery, call, put, takeLatest} from 'redux-saga/effects';
+import {takeEvery, call, put, takeLatest, select} from 'redux-saga/effects';
 import {TypeRoom} from './room.type';
-import {createRoomAPI, getAllMyRoomAPI} from '../modules/room.api';
+import {
+  createRoomAPI,
+  getAllMyRoomAPI,
+  increaseNumberAPI,
+} from '../modules/room.api';
 import {convertDataSuccess} from '@src/modules/utils';
+import {ActionLoading} from '@src/constants/loading.type';
 
 function* createRoomSaga({payload}) {
   // show loading
@@ -43,13 +48,22 @@ function* getAllMyRoomSaga({payload}) {
     payload: {
       changeFields: {
         showLoading: true,
+        actionLoading: payload.actionLoading,
       },
     },
   });
 
+  const {pagination} = yield select(state => state.room.rooms);
+
   //call api
-  const {data, message, success} = yield call(getAllMyRoomAPI);
-  console.log(`{data,message,success}`, {data, message, success});
+  const {data, message, success} = yield call(
+    getAllMyRoomAPI,
+    payload.actionLoading === ActionLoading.loadMore
+      ? {page: pagination.current + 1, sort: payload.sort}
+      : !!payload.sort
+      ? {sort: payload.sort}
+      : {},
+  );
 
   if (success) {
     yield put({
@@ -57,6 +71,8 @@ function* getAllMyRoomSaga({payload}) {
       payload: {
         data: convertDataSuccess(data.rooms),
         pagination: data.pagination,
+        keepMyRooms:
+          payload.actionLoading === ActionLoading.loadMore ? true : false,
       },
     });
   } else {
@@ -69,7 +85,31 @@ function* getAllMyRoomSaga({payload}) {
   }
 }
 
+function* increaseNumberSaga({payload}) {
+  const {data, message, success} = yield call(increaseNumberAPI, {
+    id: payload.id,
+  });
+  if (success) {
+    yield put({
+      type: TypeRoom.increaseNumberSuccess,
+      payload: {
+        data,
+      },
+    });
+  } else {
+    yield put({
+      type: TypeRoom.changeFields,
+      payload: {
+        changeFields: {
+          errorIncreaseNumber: message,
+        },
+      },
+    });
+  }
+}
+
 export const RoomSagas = [
   takeEvery(TypeRoom.createRoom, createRoomSaga),
   takeLatest(TypeRoom.getAllMyRoom, getAllMyRoomSaga),
+  takeEvery(TypeRoom.increaseNumber, increaseNumberSaga),
 ];

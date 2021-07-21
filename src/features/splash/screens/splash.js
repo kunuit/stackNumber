@@ -37,7 +37,7 @@ const SplashScreen = () => {
           style={{
             height: 100,
           }}
-          speed={0.5}
+          speed={1.3}
           autoPlay
           loop={false}
           onAnimationFinish={() => navigation.replace(Router.BottomTabBar)}

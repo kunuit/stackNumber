@@ -17,6 +17,7 @@ import {
   setTokenHeaderService,
   logoutAPI,
 } from '../modules/auth.api';
+import {ActionLoading} from '@src/constants/loading.type';
 
 function* initAuthSaga({payload}) {
   yield call(setTokenHeaderService, payload.token);
@@ -39,8 +40,18 @@ function* loginSaga(action) {
 
     yield call(setTokenHeaderService, data.accessToken);
 
-    yield put({type: TypeNumber.getAllMyNumber});
-    yield put({type: TypeRoom.getAllMyRoom});
+    yield put({
+      type: TypeNumber.getAllMyNumber,
+      payload: {
+        actionLoading: ActionLoading.fetching,
+      },
+    });
+    yield put({
+      type: TypeRoom.getAllMyRoom,
+      payload: {
+        actionLoading: ActionLoading.fetching,
+      },
+    });
   } else {
     // res error
     yield put({

@@ -26,6 +26,7 @@ export const Router = {
   QrCodeGeneratorScreen: 'QrCodeGeneratorScreen',
   CreateRoomScreen: 'CreateRoomScreen',
   ListMyRoom: 'ListMyRoom',
+  DashboardRoomScreen: 'DashboardRoomScreen',
 
   // notification
   Notification: 'Notification',

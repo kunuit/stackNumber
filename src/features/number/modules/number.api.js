@@ -1,3 +1,4 @@
+import qs from 'query-string';
 import axiosService from '@src/modules/axiosService';
 import {API_ENDPOINT} from '@env';
 
@@ -8,6 +9,12 @@ export const getNumberAPI = ({url}) => {
   return axiosService.get(`${url}`);
 };
 
-export const getAllMyNumberAPI = (sort = -1, limit = 10, page = 1) => {
-  return axiosService.get(`${API_ENDPOINT}/${route}?sort=-1`);
+export const getAllMyNumberAPI = (params = {}) => {
+  let queryParams = '';
+  if (Object.keys(params).length > 0) {
+    queryParams = `?${qs.stringify(params)}`;
+  }
+  console.log(`queryParams`, queryParams);
+
+  return axiosService.get(`${API_ENDPOINT}/${route}${queryParams}`);
 };

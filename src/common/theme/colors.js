@@ -1,6 +1,9 @@
 export default {
   primary: '#53B175',
   secondary: '#414757',
+  lGreen: '#B6EBAC',
+  mGreen: '#92E282',
+  bGreen: '#62D54B',
   error: '#f13a59',
   notBlack: '#181725',
   notGray: '#7C7C7C',

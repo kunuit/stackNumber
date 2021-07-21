@@ -25,7 +25,7 @@ const CreateRoomScreen = () => {
   useEffect(() => {
     if (isCreated) {
       navigation.goBack();
-      navigation.navigate(Router.QrCodeGeneratorScreen, {
+      navigation.navigate(Router.DashboardRoomScreen, {
         id: Object.keys(rooms.list).slice(-1)[0],
       });
       dispatch({

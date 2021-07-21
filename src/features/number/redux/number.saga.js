@@ -1,7 +1,8 @@
-import {takeEvery, call, put, takeLatest} from 'redux-saga/effects';
+import {takeEvery, call, put, takeLatest, select} from 'redux-saga/effects';
 import {TypeNumber} from './number.type';
 import {getNumberAPI, getAllMyNumberAPI} from '../modules/number.api';
 import {convertDataSuccess} from '@src/modules/utils';
+import {ActionLoading} from '@src/constants/loading.type';
 
 function* getNumberSaga({payload}) {
   // show loading
@@ -45,11 +46,21 @@ function* getAllMyNumberSaga({payload}) {
     payload: {
       changeFields: {
         showLoading: true,
+        actionLoading: payload.actionLoading,
       },
     },
   });
 
-  const {data, message, success} = yield call(getAllMyNumberAPI);
+  const {pagination} = yield select(state => state.number.myNumbers);
+
+  const {data, message, success} = yield call(
+    getAllMyNumberAPI,
+    payload.actionLoading === ActionLoading.loadMore
+      ? {page: pagination.current + 1, sort: payload.sort}
+      : !!payload.sort
+      ? {sort: payload.sort}
+      : {},
+  );
 
   if (success) {
     yield put({
@@ -57,6 +68,17 @@ function* getAllMyNumberSaga({payload}) {
       payload: {
         data: convertDataSuccess(data.numbers),
         pagination: data.pagination,
+        keepMyNumbers:
+          payload.actionLoading === ActionLoading.loadMore ? true : false,
+      },
+    });
+  } else {
+    yield put({
+      type: TypeNumber.changeFields,
+      payload: {
+        changeFields: {
+          errorNumber: message,
+        },
       },
     });
   }

@@ -22,10 +22,14 @@ const reducer = (state = initialState, {type, payload}) => {
         ...state,
         showLoading: false,
         myNumbers: {
-          ...state.myNumbers,
-          ...payload.data,
+          list: {
+            ...(payload.keepMyNumbers ? state.myNumbers.list : {}),
+
+            ...payload.data,
+          },
           pagination: payload.pagination,
         },
+        actionLoading: null,
       };
 
     case TypeNumber.changeFields:
@@ -38,12 +42,17 @@ const reducer = (state = initialState, {type, payload}) => {
       return {
         // loading
         showLoading: false,
+        actionLoading: null,
         // handle
         pickerNumber: null,
         errorNumber: null,
         myNumbers: Object.freeze({
           list: [],
-          pagination: null,
+          pagination: {
+            current: 0,
+            limit: 0,
+            total: 0,
+          },
         }),
       };
 

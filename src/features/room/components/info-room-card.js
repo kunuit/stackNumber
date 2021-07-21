@@ -5,7 +5,6 @@ import ShowLoading from '@src/components/show-loading';
 import {TypeLoading} from '@src/constants/loading.type';
 
 const InfoRoomCard = ({onCard, item, ...props}) => {
-  console.log(`item`, item);
   return (
     <View style={styles.root}>
       <TouchableHighlight
