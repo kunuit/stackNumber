@@ -1,3 +1,5 @@
+import _get from 'lodash/get';
+
 export const convertDataSuccess = data => {
   const newData = data.reduce((obj, res, index) => {
     return {
@@ -17,4 +19,13 @@ export function debounce(fn, delay) {
       fn.call(this, args);
     }, delay);
   };
+}
+
+export function pickerNumberWithCondition(list, key, value) {
+  console.log(`key`, key, value, list);
+  const itemPicked = Object.values(list).find(
+    item => _get(item, key) === value,
+  );
+
+  return itemPicked;
 }

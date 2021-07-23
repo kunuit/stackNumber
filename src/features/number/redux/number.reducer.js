@@ -32,7 +32,21 @@ const reducer = (state = initialState, {type, payload}) => {
         actionLoading: null,
       };
 
+    case TypeNumber.changeMyNumberFields:
+      return {
+        ...state,
+        myNumbers: {
+          ...state.myNumbers,
+          list: {
+            ...state.myNumbers.list,
+
+            ...payload.data,
+          },
+        },
+      };
+
     case TypeNumber.changeFields:
+      console.log(`object`, payload.changeFields);
       return {
         ...state,
         ...payload.changeFields,

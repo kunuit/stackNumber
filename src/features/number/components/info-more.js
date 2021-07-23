@@ -3,8 +3,9 @@ import {Theme} from '@src/common/theme';
 import React from 'react';
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {pickerNumberWithCondition} from '@src/modules/utils';
 
-const InfoMore = () => {
+const InfoMore = ({onMore}) => {
   return (
     <View style={styles.root}>
       <View style={styles.iconContainer}>
@@ -27,13 +28,13 @@ const InfoMore = () => {
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity
-          onPress={() =>
+          onPress={() => {
             showToast({
               message: 'Tính nằng đang phát triển',
               title: 'Thông báo',
               type: 'info',
-            })
-          }>
+            });
+          }}>
           <View>
             <Image
               source={require('@src/assets/images/icons/color-yin-yang.png')}
@@ -45,12 +46,14 @@ const InfoMore = () => {
       </View>
       <View style={styles.iconContainer}>
         <TouchableOpacity
-          onPress={() =>
-            showToast({
-              message: 'Tính nằng đang phát triển',
-              title: 'Thông báo',
-              type: 'info',
-            })
+          onPress={
+            () =>
+              showToast({
+                message: 'Tính nằng đang phát triển',
+                title: 'Thông báo',
+                type: 'info',
+              })
+            // onMore
           }>
           <View style={styles.more}>
             <View style={styles.moreIcon}>

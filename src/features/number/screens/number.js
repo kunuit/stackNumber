@@ -17,11 +17,14 @@ import {Router} from '@src/navigation/router';
 import {useSelector} from 'react-redux';
 import ShowLoading from '@src/components/show-loading';
 import {TypeLoading} from '@src/constants/loading.type';
+import {pickerNumberWithCondition} from '@src/modules/utils';
 
 const Number = () => {
   const navigation = useNavigation();
 
-  const {pickerNumber, showLoading} = useSelector(state => state.number);
+  const {pickerNumber, showLoading, myNumbers} = useSelector(
+    state => state.number,
+  );
   const {isLogin} = useSelector(state => state.auth);
 
   return (
@@ -129,7 +132,16 @@ const Number = () => {
           }
           buttonText={isLogin ? 'Lấy số' : 'Đăng nhập'}
         />
-        <InfoMore />
+        <InfoMore
+        // onMore={() => {
+        //   const newPickerNumber = pickerNumberWithCondition(
+        //     myNumbers.list,
+        //     'idRoom._id',
+        //     '60f7fd7badf5a7749466f11e',
+        //   );
+        //   console.log(`newPickerNumber`, newPickerNumber);
+        // }}
+        />
       </View>
     </View>
   );

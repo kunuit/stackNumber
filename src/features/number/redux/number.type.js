@@ -11,7 +11,11 @@ export const TypeNumber = Object.freeze({
   getAllMyNumber: 'GET_ALL_MY_NUMBER',
   getAllMyNumberSuccess: 'GET_ALL_MY_NUMBER_SUCCESS',
 
+  catchMyNumberComing: 'CATCH_MY_NUMBER_COMING',
+  catchMyNumberComingSuccess: 'CATCH_MY_NUMBER_COMING_SUCCESS',
   // utils
   changeFields: 'CHANGE_NUMBER_FIELDS',
+  changePickerField: 'CHANGE_PICKER_FIELD',
+  changeMyNumberFields: 'CHANGE_MY_NUMBER_FIELDS',
   resetAll: 'RESET_ALL_NUMBER',
 });

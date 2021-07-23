@@ -15,6 +15,8 @@ import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import {Profile, HomeAuth, Login} from '@features/auth/screens';
 import {typeAuths} from '../../features/auth/redux/auth.type';
+import {TypeNumber} from '../../features/number/redux/number.type';
+import {pickerNumberWithCondition} from '@src/modules/utils';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +24,19 @@ const TabBarBottom = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const {isLogin} = useSelector(state => state.auth);
+  const {myNumbers} = useSelector(state => state.number);
+
+  console.log(`list`, myNumbers.list);
+
+  const _handleOpenNotificationLocal = idRoom => {
+    dispatch({
+      type: TypeNumber.changePickerField,
+      payload: {
+        idRoom,
+      },
+    });
+    navigation.navigate(Router.Number);
+  };
 
   useEffect(() => {
     localNotificationService.configure(onOpenNotificationLocal);
@@ -50,10 +65,15 @@ const TabBarBottom = () => {
         playSound: true,
       };
 
-      // if (notify.type === 'increase number') {
-      //   console.log('change current number');
-      //   return;
-      // }
+      if (notify.type === 'Number Coming') {
+        dispatch({
+          type: TypeNumber.catchMyNumberComing,
+          payload: {
+            roomId: notify.roomId,
+          },
+        });
+        // return;
+      }
       localNotificationService.showNotification(
         '1',
         notify.title,
@@ -72,9 +92,9 @@ const TabBarBottom = () => {
         notify.google,
         notify['google.message_id'],
       );
-      // if (!!notify.item || !!notify['google.message_id']) {
-      //   navigation.navigate(Router.Notification, notify.topic);
-      // }
+      if ((!!notify.item || !!notify['google.message_id']) && notify.roomId) {
+        _handleOpenNotificationLocal(notify.roomId);
+      }
     }
 
     // when local
