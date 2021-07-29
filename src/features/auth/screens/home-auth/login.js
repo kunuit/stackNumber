@@ -108,7 +108,7 @@ const Login = () => {
         {!!errorLogin && <Text style={styles.error}>{errorLogin}</Text>}
 
         <TextInputCus
-          label="Email or Username"
+          label="Username"
           returnKeyType="next"
           inputRef={ref => (ref_input1.current = ref)}
           autoFocus={false}
@@ -117,7 +117,6 @@ const Login = () => {
           value={email.value}
           onChangeText={text => setEmail({value: text, error: ''})}
           errorText={email.error}
-          autoCapitalize="none"
           autoCompleteType="email"
           textContentType="emailAddress"
           keyboardType="email-address"

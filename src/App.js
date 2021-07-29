@@ -60,12 +60,6 @@ const App = () => {
           actionLoading: ActionLoading.fetching,
         },
       });
-      dispatch({
-        type: TypeRoom.getAllMyRoom,
-        payload: {
-          actionLoading: ActionLoading.fetching,
-        },
-      });
     }
 
     const backAction = () => {

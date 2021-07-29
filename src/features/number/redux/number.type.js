@@ -16,6 +16,7 @@ export const TypeNumber = Object.freeze({
   // utils
   changeFields: 'CHANGE_NUMBER_FIELDS',
   changePickerField: 'CHANGE_PICKER_FIELD',
+  changeCurrentNumberPickerField: 'CHANGE_CURRENT_NUMBER_PICKER_FIELD',
   changeMyNumberFields: 'CHANGE_MY_NUMBER_FIELDS',
   resetAll: 'RESET_ALL_NUMBER',
 });

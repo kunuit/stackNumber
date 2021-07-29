@@ -1,6 +1,6 @@
 import {Theme} from '@src/common/theme';
 import Header from '@src/components/header';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Image,
   StatusBar,
@@ -18,6 +18,7 @@ import {useSelector} from 'react-redux';
 import ShowLoading from '@src/components/show-loading';
 import {TypeLoading} from '@src/constants/loading.type';
 import {pickerNumberWithCondition} from '@src/modules/utils';
+import {useWebSockets} from '../../socket-io-client/modules/use-web-socket';
 
 const Number = () => {
   const navigation = useNavigation();
@@ -26,6 +27,17 @@ const Number = () => {
     state => state.number,
   );
   const {isLogin} = useSelector(state => state.auth);
+
+  const _handleConnected = () => {
+    console.log('connected ?');
+  };
+
+  useWebSockets({
+    userId: 'abc',
+    enabled: !!pickerNumber,
+    room: !!pickerNumber ? pickerNumber.idRoom.keyRoom : null,
+    onConnected: _handleConnected,
+  });
 
   return (
     <View style={{flex: 1}}>

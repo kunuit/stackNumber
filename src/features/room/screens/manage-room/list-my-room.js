@@ -32,6 +32,15 @@ const ListMyRoom = () => {
   const [sort, setSort] = useState(1);
 
   useEffect(() => {
+    dispatch({
+      type: TypeRoom.getAllMyRoom,
+      payload: {
+        actionLoading: ActionLoading.fetching,
+      },
+    });
+  }, []);
+
+  useEffect(() => {
     if (errorIncreaseNumber) {
       showToast({
         title: 'Tăng số thứ tự',

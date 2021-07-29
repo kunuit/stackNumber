@@ -45,6 +45,17 @@ const reducer = (state = initialState, {type, payload}) => {
         },
       };
 
+    case TypeNumber.changeCurrentNumberPickerField:
+      return {
+        ...state,
+        pickerNumber: {
+          ...state.pickerNumber,
+          idRoom: {
+            ...state.pickerNumber.idRoom,
+            ...payload.changeFields,
+          },
+        },
+      };
     case TypeNumber.changeFields:
       console.log(`object`, payload.changeFields);
       return {

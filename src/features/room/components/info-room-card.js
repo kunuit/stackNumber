@@ -3,8 +3,15 @@ import {StyleSheet, Text, View, TouchableHighlight, Image} from 'react-native';
 import {Theme, WidthScreen, Source} from '@common/theme';
 import ShowLoading from '@src/components/show-loading';
 import {TypeLoading} from '@src/constants/loading.type';
+import {useWebSockets} from '@src/features/socket-io-client/modules/use-web-socket';
 
 const InfoRoomCard = ({onCard, item, ...props}) => {
+  useWebSockets({
+    userId: 'abc',
+    enabled: !!item.keyRoom,
+    room: !!item.keyRoom ? item.keyRoom : null,
+  });
+
   return (
     <View style={styles.root}>
       <TouchableHighlight

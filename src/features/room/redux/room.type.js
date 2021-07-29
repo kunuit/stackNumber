@@ -15,5 +15,6 @@ export const TypeRoom = Object.freeze({
 
   // utils
   changeFields: 'CHANGE_ROOM_FIELDS',
+  changeTotalMemberSocket: 'CHANGE_TOTAL_MEMBER_SOCKET',
   resetAll: 'RESET_ALL_ROOM',
 });

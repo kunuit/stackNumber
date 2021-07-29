@@ -43,6 +43,7 @@ const TextInputCus = (
           blurOnSubmit={props.blurOnSubmit}
           onSubmitEditing={props.onSubmitEditing}
           returnKeyType="done"
+          autoCapitalize="none"
           onFocus={() => _onFocus(true)}
           onBlur={() => _onFocus(false)}
           // ref={ref_input2}

@@ -58,6 +58,22 @@ const reducer = (state = initialState, {type, payload}) => {
         ...payload.changeFields,
       };
 
+    case TypeRoom.changeTotalMemberSocket: {
+      return {
+        ...state,
+        rooms: {
+          ...state.rooms,
+          list: {
+            ...state.rooms.list,
+            [payload._id]: {
+              ...state.rooms.list[payload._id],
+              memberTotal: payload.memberTotal,
+            },
+          },
+        },
+      };
+    }
+
     case TypeRoom.resetAll:
       return {
         // loading
