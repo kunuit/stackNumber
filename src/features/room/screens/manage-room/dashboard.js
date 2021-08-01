@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {Router} from '@src/navigation/router';
 import {debounce} from '@src/modules/utils';
 import {TypeRoom} from '../../redux/room.type';
+import {useWebSockets} from '@src/features/socket-io-client/modules/use-web-socket';
 
 const DashboardRoomScreen = () => {
   const {params} = useRoute();
@@ -20,6 +21,12 @@ const DashboardRoomScreen = () => {
   const [tmpPlus, setTmpPlus] = useState({value: 0, error: ''});
   const [memberTotalAtScreen, setMemberTotalAtScreen] = useState(0);
   const [currentNumberAtScreen, setCurrentNumberAtScreen] = useState(0);
+
+  useWebSockets({
+    userId: 'abc',
+    enabled: !!rooms.list[id] && !!rooms.list[id].keyRoom,
+    room: !!rooms.list[id] ? rooms.list[id].keyRoom : null,
+  });
 
   const {id} = params;
 

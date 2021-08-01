@@ -10,7 +10,7 @@ import {
 import Header from '@components/header';
 import {Theme, HeightScreen} from '@common/theme';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute, useIsFocused} from '@react-navigation/native';
 import InfoRoomCard from '../../components/info-room-card';
 import EmptyValue from '@components/empty-value';
 import {Router} from '@src/navigation/router';
@@ -22,6 +22,8 @@ import {showToast} from '@src/common/layout/toast.helper';
 
 const ListMyRoom = () => {
   const dispatch = useDispatch();
+  const {params} = useRoute();
+  const isFocused = useIsFocused();
   const navigation = useNavigation();
   const {showLoading, rooms, actionLoading, errorIncreaseNumber} = useSelector(
     state => state.room,
@@ -32,13 +34,14 @@ const ListMyRoom = () => {
   const [sort, setSort] = useState(1);
 
   useEffect(() => {
-    dispatch({
-      type: TypeRoom.getAllMyRoom,
-      payload: {
-        actionLoading: ActionLoading.fetching,
-      },
-    });
-  }, []);
+    // if (isFocused)
+    //   dispatch({
+    //     type: TypeRoom.getAllMyRoom,
+    //     payload: {
+    //       actionLoading: ActionLoading.fetching,
+    //     },
+    //   });
+  }, [isFocused]);
 
   useEffect(() => {
     if (errorIncreaseNumber) {
