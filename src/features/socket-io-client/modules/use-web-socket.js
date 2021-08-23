@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import io from 'socket.io-client';
 import {TypeNumber} from '../../number/redux/number.type';
 import {TypeRoom} from '../../room/redux/room.type';
+import {API_ENDPOINT_SOCKET} from '@env';
 
 export const useWebSockets = ({userId, enabled, onConnected, room}) => {
   const ref = useRef();
@@ -22,7 +23,7 @@ export const useWebSockets = ({userId, enabled, onConnected, room}) => {
       return;
     }
 
-    const socket = io('http://192.168.1.22:3002/room');
+    const socket = io(`${API_ENDPOINT_SOCKET}/room`);
 
     socket.emit('joinRoom', room);
 
